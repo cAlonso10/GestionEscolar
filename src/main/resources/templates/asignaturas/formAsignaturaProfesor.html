@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+
+        <title>Gestion Escolar | Listado de Asignaturas</title>
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+        <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+    </head>
+
+  <body>
+
+    <header th:insert="fragments/menu :: menu-principal"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Indique la asignatura para agregar al profesor</strong></h4>              
+          <div class="card-body">
+          <form th:action="@{'/asignaturas/asignarAsignaturaP/' + ${profesorId}}" method="post" th:object="${asignatura}">
+
+
+    <input type="hidden" id="profesorId" name="profesorId" th:value="${profesorId}" />
+    <div class="form-group">
+        <label for="asignaturaId">Seleccionar asignatura</label>
+        <select class="form-control" id="asignaturaId" name="asignaturaId">
+            <option th:each="asignatura : ${asignaturas}" th:value="${asignatura.id}" th:text="${asignatura.nombre}"></option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Asignar Asignatura al Profesor</button>
+</form>
+
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>

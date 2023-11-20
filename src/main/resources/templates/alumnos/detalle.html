@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+
+        <title>Gestion Escolar | Listado de alumnos</title>
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+        <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+    </head>
+  <body>
+     <header th:insert="fragments/menu :: menu-principal">
+      
+    </header>
+
+    <main role="main">
+      <hr>
+      <div class="container"> 
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="card">
+    <h4 class="card-header">Detalles del alumno <strong th:text="${alumno.nombre + ' ' + alumno.apellidos}"></strong></h4>              
+    <div class="card-body">
+        <h5>Curso:</h5>
+        <ul>
+            <li th:each="curso : ${alumno.curso}">
+                <span th:text="${curso.nombre}"></span>
+            </li>
+        </ul>
+		<h5>Notas:</h5>
+<div class="d-flex justify-content-between align-items-center">
+    <ul>
+        <li th:each="nota : ${alumno.notas}">
+            <span th:text="${nota.notaValue}"></span>
+            <span> - Asignatura: <span th:text="${nota.asignatura.nombre}"></span></span>
+        </li>
+    </ul>
+    <a class="btn btn-primary" th:href="@{/notas/alumno/{id} (id=${alumno.id})}" role="button"><i class="fas fa-file" aria-hidden="true"></i> Gestionar notas del Alumno</a>
+</div>
+        
+    </div>
+</div>
+
+      </div>
+    </main>
+
+     <footer th:insert="fragments/footer :: pie-pagina"class="footer">
+
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

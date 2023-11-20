@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    
+    <title>Gestion Escolar</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+        <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+  <body>
+    <header th:insert="fragments/menu :: menu-principal">
+      
+    </header>
+
+      <main role="main">
+        <div class="jumbotron mb-4">
+            <h3>Bienvenido, <span th:text="${username}"></span>.</h3>
+            Seleccione una de las opciones del menú, si no ves nada solicita permisos al administrador.
+        </div>
+
+		<div th:if="${msg != null}" class='container alert alert-success' th:text="${msg}" role='alert'></div>
+
+        <div class="container">
+            <div class="row text-center">
+
+                
+                <div class="col-md-6 mb-4" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+    				<div class="section border p-3">
+        <h4>Eliminar tabla de notas</h4>
+        <a  th:href="@{/notas/borrarRegistrosNotas}" onclick="return confirm('¿Estás seguro de que quieres borrar la información, no hay vuelta atrás?')" class="btn btn-danger btn-sm" role="button" title="Eliminar">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
+        </a>
+        <br><span>Se eliminará toda la información de las notas, no hay vuelta atrás</span>
+    </div>
+</div>
+
+                
+                <div class="col-md-6 mb-4" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+                    <div class="section border p-3">
+        <h4>Eliminar tabla de alumnos</h4>
+        <a  th:href="@{/alumnos/borrarRegistrosAlumnos}" onclick="return confirm('¿Estás seguro de que quieres borrar la información, no hay vuelta atrás?')" class="btn btn-danger btn-sm" role="button" title="Eliminar">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
+        </a>
+        <br><span>Se eliminará toda la información de los alumnos y sus notas, no hay vuelta atrás</span>
+    </div>
+                </div>
+
+            </div>
+
+            <div class="row text-center">
+
+                
+               <div class="col-md-6 mb-4" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+                    <div class="section border p-3">
+        <h4>Desasignar alumnos de cursos</h4>
+        <a th:href="@{/cursos/desasignarAlumnos}" onclick="return confirm('¿Estás seguro de que quieres borrar la información, no hay vuelta atrás?')" class="btn btn-danger btn-sm" role="button" title="Eliminar">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
+        </a>
+        <br><span>Se desasignarán todos los alumnos de sus cursos actuales, las notas se conservarán</span>
+    </div>
+                </div>
+
+                
+                <div class="col-md-6 mb-4" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+                    <div class="section border p-3">
+        <h4>Desasignar profesores de cursos</h4>
+        <a    th:href="@{/cursos/desasignarProfesores}" onclick="return confirm('¿Estás seguro de que quieres borrar la información, no hay vuelta atrás?')" class="btn btn-danger btn-sm" role="button" title="Eliminar">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
+        </a>
+        <br><span>Se desasignarán todos los profesores de sus cursos actuales</span>
+    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer th:insert="fragments/footer :: pie-pagina"class="footer">
+
+</footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>
+
